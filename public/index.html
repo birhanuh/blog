@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <title>Blogs</title>
+</head>
+<body>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Blogs</h1>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th>URL</th>
+                <th>Action</th>
+              </tr>
+              <tr>
+                <td><input class="form-control input-sm author-input"></td>
+                <td><input class="form-control input-sm title-input"></td>
+                <td><input class="form-control input-sm url-input"></td>
+                <td><button class="btn btn-primary btn-sm add-blog">Add Blog</button></td>
+              </tr>
+            </thead>
+            <tbody class="blogs-list">
+              
+            </tbody>
+          </table>
+          
+            
+          </div>
+        </div>  
+      </div>  
+    </div>  
+  </section>
+
+  <script type="text/template" id="blog-list-template">
+    <td><span class="author"><%= author %></span></td>
+    <td><span class="title"><%= title %></span></td>
+    <td><span class="url"><%= url %></span></td>
+    <td><button class="btn btn-warning btn-sm edit-blog">Edit Blog</button>&nbsp;&nbsp;<button class="btn btn-danger btn-sm remove-blog">Remove Blog</button>&nbsp;&nbsp;<button class="btn btn-success btn-sm update-blog" style="display: none;">Update Blog</button>&nbsp;&nbsp;<button class="btn btn-danger btn-sm cancel" style="display: none;">Cancel</button></td>
+  </script>
+
+
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/underscore/underscore.js"></script>
+  <script src="bower_components/backbone/backbone.js"></script>
+  <script type="text/javascript" src="js/scripts.js"></script>
+
+</body>
+</html>

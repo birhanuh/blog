@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="public/bower_components/bootstrap/less/bootstrap.less">
+  <title>Backbone Tutorial Blogroll App</title>
+</head>
+<body>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Backbone Tutorial Blogroll App</h1>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th>URL</th>
+                <th>Action</th>
+              </tr>
+              <tr>
+                <td><input class="form-control author-input"></td>
+                <td><input class="form-control title-input"></td>
+                <td><input class="form-control url-input"></td>
+                <td><button class="btn btn-primary add-blog">Add Blog</button></td>
+              </tr>
+            </thead>
+            <tbody class="blogs-list">
+              
+            </tbody>
+          </table>
+          
+            
+          </div>
+        </div>  
+      </div>  
+    </div>  
+  </section>
+
+  <script type="text/template" id="blog-list-template">
+    <td><span class="author"><%= author %></span></td>
+    <td><span class="title"><%= title %></span></td>
+    <td><span class="url"><%= url %></span></td>
+    <td><button class="btn btn-warning edit-blog">Edit Blog</button>&nbsp;&nbsp;<button class="btn btn-danger remove-blog">Remove Blog</button>&nbsp;&nbsp;<button class="btn btn-success update-blog" style="display: none;">Update Blog</button>&nbsp;&nbsp;<button class="btn btn-danger cancel" style="display: none;">Cancel</button></td>
+  </script>
+
+  <script src="public/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="public/bower_components/backbone/backbone.js"></script>
+  <script src="public/bower_components/jquery/dist/jquery.js"></script>
+  <script src="public/bower_components/underscore/underscore.js"></script>
+  <script src="/js/script.js"></script>
+
+</body>
+</html>

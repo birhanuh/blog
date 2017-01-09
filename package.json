@@ -1,0 +1,24 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "Backbonejs app for managing blogs. ",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/birhanuh/blog.git"
+  },
+  "author": "Birhanu Hailemariam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/birhanuh/blog/issues"
+  },
+  "homepage": "https://github.com/birhanuh/blog#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.7.6"
+  }
+}
