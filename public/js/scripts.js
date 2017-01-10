@@ -31,6 +31,7 @@ var blog2 = new Blog({
   url: 'http://jhonsblog.com'
 });
 
+// Instantiate a Collection
 var blogs = new Blogs([blog1, blog2]);
 */
 
@@ -41,7 +42,7 @@ var BlogView = Backbone.View.extend({
   className: 'blog',
 
   initialize: function() {
-    this.template = _.template($('#blog-list-template').html());
+    this.template = _.template($('#blog-item-template').html());
   },
 
   events: {
@@ -68,7 +69,14 @@ var BlogView = Backbone.View.extend({
 
   onUpdate: function() {
     this.model.set({'author': $('.author-update').val(), 'title': $('.title-update').val(), 'url': $('.url-update').val()});
-    console.log('model: ' +this.model.toJSON());
+    this.model.save(null, {
+      success: function(response) {
+        console.log('Successfully updated blog with _id: ' +response.toJSON()._id);
+      },
+      error: function() {
+        console.log('Failed to update blog.');
+      }
+    });
   },
   
   onCancel: function() {

@@ -63,3 +63,9 @@ app.delete('/api/blogs/:id', function(req, res) {
   });
 });
 
+app.put('/api/blogs/:id', function(req, res) {
+  console.log('Received a update request for _id: ' +req.params.id);
+  Blog.update({_id: req.params.id}, req.body, function(err) {
+    res.send({_id: req.params.id})
+  });
+});
