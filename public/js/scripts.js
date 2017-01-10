@@ -35,7 +35,7 @@ var blog2 = new Blog({
 var blogs = new Blogs([blog1, blog2]);
 */
 
-// View class for displaying each blog list item
+// View class for Blog item
 var BlogView = Backbone.View.extend({
   model: new Blog(),
   tagName: 'tr',
@@ -43,6 +43,11 @@ var BlogView = Backbone.View.extend({
 
   initialize: function() {
     this.template = _.template($('#blog-item-template').html());
+  },
+
+  render: function() {
+    this.$el.html(this.template(this.model.toJSON()));
+    return this;
   },
 
   events: {
@@ -92,18 +97,13 @@ var BlogView = Backbone.View.extend({
         console.log('Failed to delete bogs.');     
       }
     });
-  },
-
-  render: function() {
-    this.$el.html(this.template(this.model.toJSON()));
-    return this;
   }
 
 });
 
 var blogs = new Blogs();
 
-// View class for rendering the list of all blogs
+// View class for Blog lists
 var BlogsView = Backbone.View.extend({
   model: blogs, 
   el: $('.blogs-list'),
@@ -141,6 +141,7 @@ var BlogsView = Backbone.View.extend({
     
 });
 
+/*Instantiate blogsView*/
 var blogsView = new BlogsView();
 
 $(document).ready(function() {
@@ -155,6 +156,7 @@ $(document).ready(function() {
     $('.url-input').val('');
 
     blogs.add(blog);
+    
     blog.save(null, {
       success: function(response) {
         console.log('Successfully saved blog with _id: ' +response.toJSON()._id);
