@@ -1,4 +1,4 @@
-// Setup express
+// Require express module
 var express = require('express');
 var bodyParser = require('body-parser');
 
@@ -8,7 +8,7 @@ var app = express();
 // Points to where our static files going to be
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
-var port = 3001;
+var port = 3000;
 
 app.listen(port);
 
