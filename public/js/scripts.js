@@ -1,4 +1,4 @@
-// Change Backbone id to mongodb id format (i.e. _id)
+// Change Backbone id format to mongodb _id 
 Backbone.Model.prototype.idAttribute = '_id';
 
 // Model class for each Blog item
@@ -76,10 +76,10 @@ var BlogView = Backbone.View.extend({
     this.model.set({'author': $('.author-update').val(), 'title': $('.title-update').val(), 'url': $('.url-update').val()});
     this.model.save(null, {
       success: function(response) {
-        console.log('Successfully updated blog with _id: ' +response.toJSON()._id);
+        console.log('Successfully UPDATED blog with _id: ' +response.toJSON()._id);
       },
       error: function() {
-        console.log('Failed to update blog.');
+        console.log('Failed to UPDATE blog.');
       }
     });
   },
@@ -91,10 +91,10 @@ var BlogView = Backbone.View.extend({
   onRemove: function() {
     this.model.destroy({
       success: function(response) {
-        console.log('Successfully removed blog with _id: ' +response.toJSON()._id);
+        console.log('Successfully REMOVED blog with _id: ' +response.toJSON()._id);
       },
       error: function() {
-        console.log('Failed to delete bogs.');     
+        console.log('Failed to REMOVE blog.');     
       }
     });
   }
@@ -116,11 +116,11 @@ var BlogsView = Backbone.View.extend({
     this.model.fetch({
       success: function(response) {
         _.each(response.toJSON(), function(item) {
-          console.log('Successfully got blog with _id: ' +item._id);
+          console.log('Successfully fetched blog with _id: ' +item._id);
         });
       },
       error: function(error) {
-        console.log('Failed to get bogs.');        
+        console.log('Failed to fetch bogs.');        
       }
     });
   },
