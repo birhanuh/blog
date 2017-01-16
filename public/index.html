@@ -13,7 +13,7 @@
         <div class="col-sm-12">
           <h1>Blogs</h1>
 
-          <table class="table">
+          <table class="table table-bordered table-condensed">
             <thead>
               <tr>
                 <th>Author</th>
@@ -40,14 +40,29 @@
     </div>  
   </section>
 
-  <script type="text/template" id="blog-list-template">
+  <script type="text/template" id="blog-item-template">
     <td><span class="author"><%= author %></span></td>
     <td><span class="title"><%= title %></span></td>
     <td><span class="url"><%= url %></span></td>
-    <td><button class="btn btn-warning btn-sm edit-blog">Edit Blog</button>&nbsp;&nbsp;<button class="btn btn-danger btn-sm remove-blog">Remove Blog</button>&nbsp;&nbsp;<button class="btn btn-success btn-sm update-blog" style="display: none;">Update Blog</button>&nbsp;&nbsp;<button class="btn btn-danger btn-sm cancel" style="display: none;">Cancel</button></td>
+    <td>
+      <div class="form-inline">
+        <div class="form-group">
+          <button class="btn btn-warning btn-sm edit-blog">Edit Blog</button>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-danger btn-sm remove-blog">Remove Blog</button>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-success btn-sm update-blog" style="display: none;">Update Blog</button>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-default btn-sm cancel" style="display: none;">Cancel</button>
+        </div>
+      </div>
+    </td>
   </script>
 
-
+  <!-- External Scripts -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="bower_components/underscore/underscore.js"></script>

@@ -1,4 +1,4 @@
-// Change Backbone id to mongodb id format (i.e. _id)
+// Change Backbone id format to mongodb _id 
 Backbone.Model.prototype.idAttribute = '_id';
 
 // Model class for each Blog item
@@ -31,17 +31,23 @@ var blog2 = new Blog({
   url: 'http://jhonsblog.com'
 });
 
+// Instantiate a Collection
 var blogs = new Blogs([blog1, blog2]);
 */
 
-// View class for displaying each blog list item
+// View class for Blog item
 var BlogView = Backbone.View.extend({
   model: new Blog(),
   tagName: 'tr',
   className: 'blog',
 
   initialize: function() {
-    this.template = _.template($('#blog-list-template').html());
+    this.template = _.template($('#blog-item-template').html());
+  },
+
+  render: function() {
+    this.$el.html(this.template(this.model.toJSON()));
+    return this;
   },
 
   events: {
@@ -68,7 +74,14 @@ var BlogView = Backbone.View.extend({
 
   onUpdate: function() {
     this.model.set({'author': $('.author-update').val(), 'title': $('.title-update').val(), 'url': $('.url-update').val()});
-    console.log('model: ' +this.model.toJSON());
+    this.model.save(null, {
+      success: function(response) {
+        console.log('Successfully UPDATED blog with _id: ' +response.toJSON()._id);
+      },
+      error: function() {
+        console.log('Failed to UPDATE blog.');
+      }
+    });
   },
   
   onCancel: function() {
@@ -78,24 +91,19 @@ var BlogView = Backbone.View.extend({
   onRemove: function() {
     this.model.destroy({
       success: function(response) {
-        console.log('Successfully removed blog with _id: ' +response.toJSON()._id);
+        console.log('Successfully REMOVED blog with _id: ' +response.toJSON()._id);
       },
       error: function() {
-        console.log('Failed to delete bogs.');     
+        console.log('Failed to REMOVE blog.');     
       }
     });
-  },
-
-  render: function() {
-    this.$el.html(this.template(this.model.toJSON()));
-    return this;
   }
 
 });
 
 var blogs = new Blogs();
 
-// View class for rendering the list of all blogs
+// View class for Blog lists
 var BlogsView = Backbone.View.extend({
   model: blogs, 
   el: $('.blogs-list'),
@@ -108,11 +116,11 @@ var BlogsView = Backbone.View.extend({
     this.model.fetch({
       success: function(response) {
         _.each(response.toJSON(), function(item) {
-          console.log('Successfully got blog with _id: ' +item._id);
+          console.log('Successfully fetched blog with _id: ' +item._id);
         });
       },
       error: function(error) {
-        console.log('Failed to get bogs.');        
+        console.log('Failed to fetch bogs.');        
       }
     });
   },
@@ -133,6 +141,7 @@ var BlogsView = Backbone.View.extend({
     
 });
 
+/*Instantiate blogsView*/
 var blogsView = new BlogsView();
 
 $(document).ready(function() {
@@ -147,6 +156,7 @@ $(document).ready(function() {
     $('.url-input').val('');
 
     blogs.add(blog);
+    
     blog.save(null, {
       success: function(response) {
         console.log('Successfully saved blog with _id: ' +response.toJSON()._id);
